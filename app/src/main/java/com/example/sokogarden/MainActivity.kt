@@ -27,22 +27,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//        Find the buttons by use of there ids
-        val  SigninButton = findViewById<Button>(R.id.signinbtn)
-        val SignupButton = findViewById<Button>(R.id.signupbtn)
 
-//        Create the intent to the two activities
-        SignupButton.setOnClickListener {
-            val intent = Intent(applicationContext, Signup::class.java)
-            startActivity(intent)
-        }
-
-//        ================================================
-        SigninButton.setOnClickListener {
-            val intent = Intent(applicationContext, Signin::class.java)
-            startActivity(intent)
-        }
-
+        // ✅ Single unified findViewById calls using class-level variables
         signupBtn = findViewById(R.id.signupbtn)
         signinBtn = findViewById(R.id.signinbtn)
         welcomeText = findViewById(R.id.welcomeText)
@@ -51,35 +37,36 @@ class MainActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("user_session", MODE_PRIVATE)
         val username = prefs.getString("username", null)
 
+        // ✅ Show/hide UI based on login state
         if (username != null) {
-// ✅ User is logged in
             welcomeText.text = "Welcome $username"
             welcomeText.visibility = View.VISIBLE
             logoutBtn.visibility = View.VISIBLE
-
             signupBtn.visibility = View.GONE
             signinBtn.visibility = View.GONE
         } else {
-// ❌ User not logged in
             signupBtn.visibility = View.VISIBLE
             signinBtn.visibility = View.VISIBLE
-
             welcomeText.visibility = View.GONE
             logoutBtn.visibility = View.GONE
         }
 
-// 🔓 Logout logic
+        // Navigate to Signup
+        signupBtn.setOnClickListener {
+            startActivity(Intent(applicationContext, Signup::class.java))
+        }
+
+        // Navigate to Signin
+        signinBtn.setOnClickListener {
+            startActivity(Intent(applicationContext, Signin::class.java))
+        }
+
+        // 🔓 Logout logic
         logoutBtn.setOnClickListener {
-            val editor = prefs.edit()
-            editor.clear()
-            editor.apply()
-
+            prefs.edit().clear().apply()
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
-
-// Refresh activity
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
-
-    }
+}
