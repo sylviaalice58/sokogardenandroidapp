@@ -53,16 +53,24 @@
                 android:padding="11dp" />
 
  <!--            Below is the password edit text-->
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="🔑 Enter your password"
-                android:textColorHint="#000"
-                android:id="@+id/password"
-                android:textColor="#000"
                 android:layout_margin="8dp"
-                android:background="#F5FFF5"
-                android:padding="11dp"/>
+                app:endIconMode="password_toggle"
+                android:background="#F5FFF5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="🔑 Enter your password"
+                    android:textColor="#000"
+                    android:textColorHint="#000"
+                    android:padding="11dp"
+                    android:inputType="textPassword"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 <!--            below is a sign in button -->
             <Button
@@ -88,6 +96,8 @@
                 android:layout_marginTop="12dp"
                 android:id="@+id/signuptxt"
                 android:fontFamily="sans-serif-black"/>
+
+
 
 
         </LinearLayout>
