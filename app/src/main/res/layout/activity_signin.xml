@@ -49,6 +49,7 @@
                 android:id="@+id/email"
                 android:textColor="#000"
                 android:layout_margin="8dp"
+                android:inputType="textEmailAddress"
                 android:background="#F5FFF5"
                 android:padding="11dp" />
 

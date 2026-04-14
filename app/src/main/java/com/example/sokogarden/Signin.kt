@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -36,7 +37,7 @@ class Signin : AppCompatActivity() {
 //        on click of the button sign in we need to interact with out api endpoint as we pass the two datas require ei email and password
         signinButton.setOnClickListener {
 //            specify the api endpoint
-            val api ="https://kbenkamotho.alwaysdata.net/api/signin"
+            val api ="https://slyney2248.alwaysdata.net/api/signin"
 //            create a request that run that enable us to hold the data inform of a bundle/package
             val data = RequestParams ()
 
@@ -48,7 +49,29 @@ class Signin : AppCompatActivity() {
             val helper = ApiHelper(applicationContext)
 
 //            by use of the function post_login the helper class post your data
-            helper.post_login(api, data)
+            // 🔥 ONLY navigate after success
+            helper.post(api, data) { success, message ->
+
+                if (success) {
+                    Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+
+                    // ⏳ delay before navigating
+                    android.os.Handler().postDelayed({
+
+                        // clear fields
+                        email.text.clear()
+                        password.text.clear()
+
+                        // navigate AFTER message is seen
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent)
+
+                    }, 3000) // 2 seconds delay
+
+                } else {
+                    Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 }

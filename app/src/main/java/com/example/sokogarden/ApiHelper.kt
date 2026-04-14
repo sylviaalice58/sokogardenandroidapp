@@ -18,17 +18,32 @@ import org.json.JSONObject
 
 class ApiHelper(var context: Context) {
     //POST
-    fun post(api: String, params: RequestParams) {
-        Toast.makeText(context, "Please wait for response", Toast.LENGTH_LONG).show()
+    fun post(api: String, params: RequestParams, callback: (Boolean, String) -> Unit) {
+
+        Toast.makeText(context, "Please wait...", Toast.LENGTH_SHORT).show()
+
         val client = AsyncHttpClient(true, 80, 443)
 
         client.post(api, params, object : JsonHttpResponseHandler() {
+
             override fun onSuccess(
                 statusCode: Int,
                 headers: Array<out Header>?,
                 response: JSONObject?
             ) {
-                Toast.makeText(context, "Response: $response", Toast.LENGTH_SHORT).show()
+                try {
+                    val message = response?.optString("message") ?: "Success"
+
+                    // ✅ Check success based on your API response
+                    if (message.lowercase().contains("success")) {
+                        callback(true, message)
+                    } else {
+                        callback(false, message)
+                    }
+
+                } catch (e: Exception) {
+                    callback(false, "Parsing error")
+                }
             }
 
             override fun onFailure(
@@ -37,7 +52,8 @@ class ApiHelper(var context: Context) {
                 responseString: String?,
                 throwable: Throwable?
             ) {
-                Toast.makeText(context, "Error: $responseString", Toast.LENGTH_LONG).show()
+                val errorMsg = responseString ?: throwable?.message ?: "Unknown error"
+                callback(false, errorMsg)
             }
         })
     }
