@@ -12,8 +12,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SignUp"
-        android:textSize="32sp"
+        android:text="❇️ SignUp ❇️"
+        android:textSize="47sp"
+        android:fontFamily="cursive"
         android:textAlignment="center"
         android:textStyle="italic|bold"
         android:textColor="#4E0436"
