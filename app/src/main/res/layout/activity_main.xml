@@ -80,4 +80,17 @@
 
     </LinearLayout>
 
+<!--    below is our progress bar-->
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"/>
+
+<!--    below is our recycler view-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/single_item" />
+
 </LinearLayout>

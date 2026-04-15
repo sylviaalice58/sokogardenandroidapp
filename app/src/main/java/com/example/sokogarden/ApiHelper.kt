@@ -146,9 +146,9 @@ class ApiHelper(var context: Context) {
                 response: JSONArray
             ) {
                 progressBar?.visibility = View.GONE
-                // val productList = ProductAdapter.fromJsonArray(response)
-                // val adapter = ProductAdapter(productList)
-                // recyclerView.adapter = adapter
+                 val productList = ProductAdapter.fromJsonArray(response)
+                 val adapter = ProductAdapter(productList)
+                 recyclerView.adapter = adapter
             }
 
             override fun onFailure(
