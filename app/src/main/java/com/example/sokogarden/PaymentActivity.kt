@@ -27,15 +27,21 @@ class PaymentActivity : AppCompatActivity() {
         val txtName = findViewById<TextView>(R.id.txtProductName)
         val txtCost = findViewById<TextView>(R.id.txtProductCost)
         val imgProduct = findViewById<ImageView>(R.id.imgProduct)
+        val txtDescription = findViewById<TextView>(R.id.txtProductDescription)
+
 
 //        retrive the data passed from the previous activity
         val name =intent.getStringExtra("product_name")
         val cost = intent.getIntExtra("product_cost", 0)
         val product_photo = intent.getStringExtra("product_photo")
+        val description = intent.getStringExtra("product_description")
+
 
 //        update the text views with the data first from the previous activity
         txtName.text = name
         txtCost.text = "Kes $cost"
+        txtDescription.text = description
+
 
 //        specify the image URL
         val imageUrl = "https://slyney2248.alwaysdata.net/static/images/$product_photo"
