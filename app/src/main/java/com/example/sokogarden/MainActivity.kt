@@ -84,10 +84,5 @@ class MainActivity : AppCompatActivity() {
 //        inside of the helper class access the function load products
         helper.loadProducts(url, recyclerView, progressBar)
 
-
-
-
-
-
     }
 }
