@@ -34,8 +34,9 @@
             android:text="👤 SignUp"
             android:textStyle="italic"
             android:textSize="25sp"
+            android:layout_weight="1"
             android:padding="10dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="4dp"
             android:textColor="#000"
             android:layout_marginTop="8dp"
             android:id="@+id/signupbtn"/>
@@ -45,12 +46,26 @@
             android:layout_height="wrap_content"
             android:text="👮 SignIn"
             android:textStyle="italic"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
             android:textSize="25sp"
             android:padding="10dp"
-            android:layout_marginLeft="50dp"
             android:textColor="#000"
             android:layout_marginTop="8dp"
             android:id="@+id/signinbtn" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📜About"
+            android:textStyle="italic"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:textSize="25sp"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:layout_marginTop="8dp"
+            android:id="@+id/aboutbtn" />
 
         <TextView
             android:id="@+id/welcomeText"
@@ -78,6 +93,8 @@
 
 
 
+
+
     </LinearLayout>
 
 <!--    below is our progress bar-->
@@ -85,6 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progressbar"/>
+
 
 <!--    below is our recycler view-->
     <androidx.recyclerview.widget.RecyclerView
